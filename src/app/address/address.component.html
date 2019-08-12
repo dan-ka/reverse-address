@@ -1,0 +1,32 @@
+<form class="example-form">
+  <mat-form-field class="example-full-width">
+    <input type="text" placeholder="Pick Up" aria-label="Number" matInput [formControl]="pickUp" [matAutocomplete]="_pickUp">
+    <mat-autocomplete #_pickUp="matAutocomplete" (optionSelected)="setAddress($event.option.value, 1)">
+      <mat-option *ngFor="let pickUp of pickUpResult" [value]="pickUp">
+        {{ pickUp.display_name }}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input type="text" placeholder="Drop Off" aria-label="Number" matInput [formControl]="dropOff" [matAutocomplete]="_dropOff">
+    <mat-autocomplete #_dropOff="matAutocomplete" (optionSelected)="setAddress($event.option.value, 2)">
+      <mat-option *ngFor="let dropOff of dropOffResult" [value]="dropOff">
+        {{ dropOff.display_name }}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+  <div class="example-full-width example-button-row">
+    <button mat-raised-button color="primary" (click)="getPrice($event)">Get Prices</button>
+  </div>
+  <hr>
+  <h2 class="example-full-width example-button-row">Our top quotes</h2>
+  <hr>
+  <table class="example-full-width example-button-row">
+    <tr *ngFor="let price of pricingResult">
+      <td>{{ price.Name }}</td>
+      <td>{{ price.Price }}</td>
+      <td>{{ price.Eta }}</td>
+    </tr>
+  </table>
+</form>
